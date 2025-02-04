@@ -1,6 +1,5 @@
 # QuickBooks Customer Data Visualization (Mock Data)
 
-This project demonstrates how to build a web application to display and visualize QuickBooks customer data. It uses Python with the Flask framework to create a user-friendly interface.  Currently, the project utilizes mock data stored in JSON format, allowing for development and testing without requiring a live connection to the QuickBooks Online API. The architecture is designed to facilitate seamless integration with the actual QuickBooks API when ready. Key features include a sortable table for displaying customer information and a bar chart to visually represent customer balances.
 This project implements a Python web application using the Flask framework to display and visualize QuickBooks customer data. The application follows a modular design, separating API interaction logic, data processing, and presentation. Currently, mock data is used for testing and demonstration. The project utilizes Chart.js for creating charts and Bootstrap for styling. The next phase will involve integrating with the QuickBooks Online API using OAuth 2.0 for authentication and the QuickBooks Query API for data retrieval.
 
 ## Table of Contents
@@ -45,6 +44,7 @@ Before running the application, ensure that you have the following installed:
 
     ```bash
     git clone [https://github.com/your-username/QuickBooksExample.git](https://github.com/your-username/QuickBooksExample.git)
+    git clone https://github.com/Freedomwithin/QuickBooksExample/
     ```
 
 2.  Navigate to the project directory:
