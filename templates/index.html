@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks Customer Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+      .container {
+            max-width: 960px;
+            margin-top: 50px;
+        }
+        h1 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+      .table-responsive {
+            overflow-x: auto;
+        }
+      .table {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+      .table th {
+            background-color: #fff;
+            font-weight: 600;
+            color: #343a40;
+            padding: 15px;
+            border-bottom: 2px solid #dee2e6;
+        }
+      .table td {
+            background-color: #fff;
+            vertical-align: middle;
+            padding: 15px;
+            border: none;
+        }
+      .table tr {
+            border-bottom: 1px solid #eee;
+        }
+      .total-balance {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            color: #27ae60;
+        }
+        #customerBalanceChart {
+            margin-top: 30px; /* Space between total and chart */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Data</h1>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.Name }}</td>
+                        <td>{{ customer.ID }}</td>
+                        <td>{{ customer.Balance }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="total-balance">
+            Total Balance: {{ total_balance }}
+        </div>
+
+        <canvas id="customerBalanceChart"></canvas>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script>
+        const customerData = {
+            labels: [{% for customer in customers %}"{{ customer.Name }}"{% if not loop.last %},{% endif %}{% endfor %}],
+            datasets: [{
+                label: 'Customer Balances',
+                data: [{% for customer in customers %}{{ customer.Balance }}{% if not loop.last %},{% endif %}{% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const ctx = document.getElementById('customerBalanceChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: customerData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
