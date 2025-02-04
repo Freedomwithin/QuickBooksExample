@@ -43,7 +43,6 @@ Before running the application, ensure that you have the following installed:
 1.  Clone the repository:
 
     ```bash
-    git clone [https://github.com/your-username/QuickBooksExample.git](https://github.com/your-username/QuickBooksExample.git)
     git clone https://github.com/Freedomwithin/QuickBooksExample/
     ```
 
