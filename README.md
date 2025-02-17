@@ -81,5 +81,3 @@ Before running the application, ensure that you have the following installed:
     ```
 
 3.  Open your web browser and navigate to `http://127.0.0.1:5000/` to view the application.
-
-## Project Structure
